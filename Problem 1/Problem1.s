@@ -14,27 +14,31 @@ main:
 
   l.s $f0, f_three
   mfc1 $a0, $f0
-  jal divbyx                    # div_by_x(3)
+
+  l.s $f0, limit
+  mfc1 $a1, $f0
+  jal divbyx                    # div_by_x(3, 1000)
 
   mtc1 $v0, $f1
   add.s $f8, $f8 ,$f1
 
   l.s $f0, f_five
   mfc1 $a0, $f0
-  jal divbyx                    # div_by_x(5)
+  jal divbyx                    # div_by_x(5, 1000)
 
   mtc1 $v0, $f1
   add.s $f8, $f8, $f1
 
   l.s $f0, f_fifteen
   mfc1 $a0, $f0
-  jal divbyx                    # div_by_x(15)
+  jal divbyx                    # div_by_x(15, 1000)
 
   mtc1 $v0, $f1
   sub.s $f8, $f8, $f1
 
   mov.s $f12, $f8
-  li $v0, 2
+  cvt.w.s $a0, $f12
+  li $v0, 1
   syscall
 
   li  $v0, 10
@@ -46,7 +50,7 @@ main:
 .ent divbyx
 
 divbyx:
-  l.s $f0, limit
+  mtc1 $a1, $f0
   mtc1 $a0, $f9
 
   l.s $f10, f_one

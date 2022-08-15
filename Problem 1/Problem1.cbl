@@ -12,13 +12,16 @@
             01 LOOP-SUM-SUPPRESS PIC Z(38).
        PROCEDURE DIVISION.
        MAIN-PROCEDURE.
-            PERFORM DIVBYX VARYING X FROM 3 BY 1 UNTIL X = 4.
+            SET X TO 3.
+            PERFORM DIVBYX.
             COMPUTE LOOP-SUM = LOOP-SUM + RET.
 
-            PERFORM DIVBYX VARYING X FROM 5 BY 1 UNTIL X = 6.
+            SET X TO 5.
+            PERFORM DIVBYX.
             COMPUTE LOOP-SUM = LOOP-SUM + RET.
 
-            PERFORM DIVBYX VARYING X FROM 15 BY 1 UNTIL X = 16.
+            SET X TO 15.
+            PERFORM DIVBYX.
             COMPUTE LOOP-SUM = LOOP-SUM - RET.
 
             MOVE LOOP-SUM TO LOOP-SUM-SUPPRESS.
